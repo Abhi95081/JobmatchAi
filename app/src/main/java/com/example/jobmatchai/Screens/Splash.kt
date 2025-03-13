@@ -3,11 +3,13 @@ package com.example.jobmatchai.Screens
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -18,9 +20,8 @@ import kotlinx.coroutines.delay
 @Composable
 fun Splash(navHostController: NavHostController) {
     var isVisible by remember { mutableStateOf(false) }
-    var scale by remember { mutableStateOf(1f) }
+    var scale by remember { mutableFloatStateOf(1f) }
 
-    // Animation for scaling effect
     val scaleAnimation = animateFloatAsState(
         targetValue = scale,
         animationSpec = infiniteRepeatable(
@@ -30,41 +31,44 @@ fun Splash(navHostController: NavHostController) {
     )
 
     LaunchedEffect(Unit) {
-        isVisible = true  // Trigger fade-in
+        isVisible = true
         delay(1000)
 
-        // Start scaling effect (pulsating)
         scale = 1.1f
         delay(1500)
 
-        isVisible = false // Start fade-out
+        isVisible = false
         delay(500)
 
         navHostController.navigate(Routes.Login.routes) {
-            popUpTo(navHostController.graph.startDestinationId) {
-                inclusive = true
-            }
+            popUpTo(navHostController.graph.startDestinationId) { inclusive = true }
             launchSingleTop = true
         }
     }
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp), // Optional padding
-        verticalArrangement = Arrangement.Center, // Centers the image vertically
-        horizontalAlignment = Alignment.CenterHorizontally // Centers horizontally
+            .background(Color(0xFFD189D2)) // Set Purple Background
     ) {
-        AnimatedVisibility(
-            visible = isVisible,
-            enter = fadeIn(animationSpec = tween(1000)),
-            exit = fadeOut(animationSpec = tween(500))
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.background),
-                contentDescription = "Logo",
-                modifier = Modifier.scale(scaleAnimation.value) // Apply scale animation
-            )
+            AnimatedVisibility(
+                visible = isVisible,
+                enter = fadeIn(animationSpec = tween(1000)),
+                exit = fadeOut(animationSpec = tween(500))
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.background),
+                    contentDescription = "Logo",
+                    modifier = Modifier.scale(scaleAnimation.value)
+                )
+            }
         }
     }
 }
