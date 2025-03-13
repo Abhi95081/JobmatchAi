@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.jobmatchai"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.jobmatchai"
@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.webkit)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -66,4 +67,35 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
+
+    implementation ("com.tom-roush:pdfbox-android:2.0.27.0")
+
+    val nav_version = "2.7.0"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    // Constraints Layout dependencies.
+    implementation ("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+
+    // Coil for image store and picker from the gallery.
+    implementation("io.coil-kt:coil-compose:2.2.2")
+
+    // viewmodel dependencies
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+
+    //For ViewModel with LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+
+    //runtime live data
+    implementation("androidx.compose.runtime:runtime-livedata:1.5.9")
+
+    //password eye
+    implementation("androidx.compose.material:material-icons-extended:1.5.4") // Use latest version
+
+        //google drive
+//    implementation ("com.google.android.gms:play-services-auth:20.7.0")
+//    implementation ("com.google.api-client:google-api-client-android:1.32.1")
+//    implementation ("com.google.apis:google-api-services-drive:v3-rev197-1.25.0")
+//    implementation ("com.google.auth:google-auth-library-oauth2-http:1.16.0")
 }
