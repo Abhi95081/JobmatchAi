@@ -76,20 +76,15 @@ fun Login(navHostController: NavHostController) {
 
         ElevatedButton(
             onClick = {
-                if(email.isEmpty() or password.isEmpty()){
-                    Toast.makeText(context,"Please Provide all fields",Toast.LENGTH_SHORT).show()
-                }else{
+                if (email.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(context, "Please provide all fields", Toast.LENGTH_SHORT).show()
+                } else {
                     navHostController.navigate(Routes.BottomNav.routes) {
-                        popUpTo(navHostController.graph.startDestinationId) {
-                            inclusive = true
-                        }
+                        popUpTo(Routes.Login.routes) { inclusive = true } // Removes Login screen from back stack
                         launchSingleTop = true
                     }
-
                 }
-
             }
-
         ) {
             Text(
                 text = "Login",
@@ -97,6 +92,7 @@ fun Login(navHostController: NavHostController) {
                 modifier = Modifier.padding(vertical = 6.dp)
             )
         }
+
 
         TextButton(
             onClick = {

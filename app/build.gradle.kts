@@ -93,9 +93,9 @@ dependencies {
     //password eye
     implementation("androidx.compose.material:material-icons-extended:1.5.4") // Use latest version
 
-        //google drive
-//    implementation ("com.google.android.gms:play-services-auth:20.7.0")
-//    implementation ("com.google.api-client:google-api-client-android:1.32.1")
-//    implementation ("com.google.apis:google-api-services-drive:v3-rev197-1.25.0")
-//    implementation ("com.google.auth:google-auth-library-oauth2-http:1.16.0")
+    //Website
+    implementation("androidx.webkit:webkit:1.9.0")
+
+
+
 }
