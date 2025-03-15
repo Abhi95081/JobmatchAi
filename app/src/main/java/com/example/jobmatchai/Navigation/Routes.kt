@@ -9,6 +9,8 @@ enum class Routes(val routes: String){
     Login("login"),
     Register("register"),
     BottomNav("bottom_nav"),
-    Splash("splash")
+    Splash("splash"),
+    CheckAts("check_ats"),
+    Modification("modify_resume")
 
 }
