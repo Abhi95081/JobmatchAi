@@ -16,9 +16,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun CheckAts(navHostController: NavHostController) {
+fun CoverLetter(navHostController: NavHostController) {
     val context = LocalContext.current
     var companyDescription by remember { mutableStateOf("") }
+    var coverLetter by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -28,7 +29,7 @@ fun CheckAts(navHostController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text("Upload Resume & Check ATS", style = MaterialTheme.typography.headlineMedium)
+        Text("Upload Resume & Generate Cover Letter", style = MaterialTheme.typography.headlineMedium)
 
         Spacer(modifier = Modifier.height(20.dp))
 
@@ -49,25 +50,46 @@ fun CheckAts(navHostController: NavHostController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Color.White)
-                .padding(8.dp)
+                .padding(8.dp),
+            decorationBox = { innerTextField ->
+                if (companyDescription.isEmpty()) {
+                    Text("Enter company description", color = Color.Gray)
+                }
+                innerTextField()
+            }
         )
 
         Spacer(modifier = Modifier.height(10.dp))
 
         Button(
             onClick = {
-                Toast.makeText(context, "Checking ATS...", Toast.LENGTH_SHORT).show()
-                // Call backend API to check ATS score
+                if (companyDescription.isNotEmpty()) {
+                    coverLetter = generateCoverLetter(companyDescription)
+                } else {
+                    Toast.makeText(context, "Please enter company description", Toast.LENGTH_SHORT).show()
+                }
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Check ATS")
+            Text("Generate Cover Letter")
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        if (coverLetter.isNotEmpty()) {
+            Text("Generated Cover Letter:", style = MaterialTheme.typography.bodyLarge)
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(coverLetter, modifier = Modifier.background(Color.White).padding(8.dp))
         }
     }
 }
 
+fun generateCoverLetter(description: String): String {
+    return "Dear Hiring Manager,\n\nI am excited to apply for the opportunity at your company. After learning about your company's $description, I am eager to contribute my skills and experience to your team.\n\nI look forward to the opportunity to discuss how I can be a valuable addition to your organization. Thank you for your time and consideration.\n\nBest regards,\n[Your Name]"
+}
+
 @Preview(showBackground = true)
 @Composable
-fun CheckAtsPreview() {
-    CheckAts(navHostController = rememberNavController())
+fun CoverLetterPreview() {
+    CoverLetter(navHostController = rememberNavController())
 }

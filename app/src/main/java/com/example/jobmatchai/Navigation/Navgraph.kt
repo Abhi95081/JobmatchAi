@@ -4,10 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.webkit.Profile
 import com.example.jobmatchai.Screens.Add
 import com.example.jobmatchai.Screens.BottomNav
-import com.example.jobmatchai.Screens.CheckAts
+import com.example.jobmatchai.Screens.CoverLetter
 import com.example.jobmatchai.Screens.Home
 import com.example.jobmatchai.Screens.Login
 import com.example.jobmatchai.Screens.Modification
@@ -43,8 +42,8 @@ fun Navgraph(navController: NavHostController) {
             Register(navController)
         }
 
-        composable(Routes.CheckAts.routes) {
-            CheckAts(navController)
+        composable(Routes.CoverLetter.routes) {
+            CoverLetter(navController)
         }
 
         composable(Routes.Modification.routes) {

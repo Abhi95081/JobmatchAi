@@ -16,7 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.jobmatchai.Navigation.Routes
 
 @Composable
-fun Add(navHostController: NavHostController) {
+fun Add(navController: NavHostController) {
     val context = LocalContext.current
 
     Column(
@@ -27,25 +27,25 @@ fun Add(navHostController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text("Add Pdf", style = MaterialTheme.typography.headlineMedium)
+        Text("Add File", style = MaterialTheme.typography.headlineMedium)
 
         Spacer(modifier = Modifier.height(20.dp))
 
         Button(
             onClick = {
-                navHostController.navigate(Routes.CheckAts.routes)
-                Toast.makeText(context, "Add File Clicked", Toast.LENGTH_SHORT).show()
+                navController.navigate(Routes.CoverLetter.routes)
+                Toast.makeText(context, "create cover letter", Toast.LENGTH_SHORT).show()
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Add File")
+            Text("Create Cover Letter")
         }
 
         Spacer(modifier = Modifier.height(10.dp))
 
         Button(
             onClick = {
-                navHostController.navigate(Routes.Modification.routes)
+                navController.navigate(Routes.Modification.routes)
                 Toast.makeText(context, "Check ATS Clicked", Toast.LENGTH_SHORT).show()
             },
             modifier = Modifier.fillMaxWidth()
@@ -58,5 +58,5 @@ fun Add(navHostController: NavHostController) {
 @Preview(showBackground = true)
 @Composable
 fun AddPreview() {
-    Add(navHostController = rememberNavController())
+    Add(navController = rememberNavController())
 }
