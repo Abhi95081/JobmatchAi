@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.webkit)
+    implementation(libs.androidx.browser)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -71,6 +72,9 @@ dependencies {
 
 
     implementation ("com.tom-roush:pdfbox-android:2.0.27.0")
+
+   // implementation ("org.apache.pdfbox:pdfbox-android:1.8.10")
+
 
     val nav_version = "2.7.0"
     implementation("androidx.navigation:navigation-compose:$nav_version")
