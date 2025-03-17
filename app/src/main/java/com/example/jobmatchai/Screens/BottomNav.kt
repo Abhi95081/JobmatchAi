@@ -1,13 +1,15 @@
 package com.example.jobmatchai.Screens
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.layout.padding
+import androidx.compose.animation.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -22,20 +24,28 @@ import com.example.jobmatchai.model.BottomNavItem
 
 @Composable
 fun BottomNav(navController: NavHostController) {
-    val navController1 = rememberNavController()
+    val bottomNavController = rememberNavController()
 
     Scaffold(
-        bottomBar = { MyBottomBar(navController1) },
-        containerColor = MaterialTheme.colorScheme.background
+        bottomBar = { MyBottomBar(navController = bottomNavController) },
+        containerColor = Color(0xFFF8F9FA) // Light background for contrast
     ) { innerPadding ->
-        NavHost(
-            navController = navController1,
-            startDestination = Routes.Home,
-            modifier = Modifier.padding(innerPadding)
-        ) {
-            composable(Routes.Home) { Home(navController) }
-            composable(Routes.Profile) { Profile(navController) }
-            composable(Routes.Add) { Add(navController1) }
+
+        Box(modifier = Modifier.padding(innerPadding)) {
+            NavHost(
+                navController = bottomNavController,
+                startDestination = Routes.Home
+            ) {
+                composable(Routes.Home) {
+                    AnimatedScreen { Home(navController) }
+                }
+                composable(Routes.Profile) {
+                    AnimatedScreen { Profile(navController) }
+                }
+                composable(Routes.Add) {
+                    AnimatedScreen { Add(navController) }
+                }
+            }
         }
     }
 }
@@ -51,39 +61,47 @@ fun MyBottomBar(navController: NavHostController) {
         BottomNavItem("Profile", Routes.Profile, Icons.Rounded.Person)
     )
 
-    AnimatedVisibility(visible = currentRoute in items.map { it.route }) {
-        NavigationBar(
-            containerColor = MaterialTheme.colorScheme.surface,
-            tonalElevation = 8.dp
-        ) {
-            items.forEach { item ->
-                val isSelected = item.route == currentRoute
+    BottomAppBar(
+        containerColor = Color(0xFF2196F3), // Modern blue color
+        tonalElevation = 8.dp, // Subtle elevation effect
+        contentColor = Color.White
+    ) {
+        items.forEach { item ->
+            val isSelected = item.route == currentRoute
 
-                NavigationBarItem(
-                    selected = isSelected,
-                    onClick = {
-                        navController.navigate(item.route) {
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
+            NavigationBarItem(
+                selected = isSelected,
+                onClick = {
+                    navController.navigate(item.route) {
+                        popUpTo(navController.graph.findStartDestination().id) {
+                            saveState = true
                         }
-                    },
-                    icon = {
-                        Icon(
-                            imageVector = item.icon,
-                            contentDescription = item.title,
-                            tint = if (isSelected) MaterialTheme.colorScheme.primary else Color.Gray
-                        )
-                    },
-                    label = {
-                        Text(
-                            text = item.title,
-                            color = if (isSelected) MaterialTheme.colorScheme.primary else Color.Gray
-                        )
+                        launchSingleTop = true
                     }
-                )
-            }
+                },
+                icon = {
+                    Icon(
+                        imageVector = item.icon,
+                        contentDescription = item.title,
+                        tint = if (isSelected) Color.White else Color(0xFFBBDEFB) // Light tint when unselected
+                    )
+                },
+                label = { Text(item.title) }
+            )
         }
+    }
+}
+
+/**
+ * Adds a smooth fade-in animation when navigating between screens.
+ */
+@Composable
+fun AnimatedScreen(content: @Composable () -> Unit) {
+    AnimatedVisibility(
+        visible = true,
+        enter = fadeIn() + slideInHorizontally(initialOffsetX = { it / 2 }),
+        exit = fadeOut() + slideOutHorizontally(targetOffsetX = { it / 2 })
+    ) {
+        content()
     }
 }
