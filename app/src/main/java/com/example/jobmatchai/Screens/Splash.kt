@@ -40,7 +40,7 @@ fun Splash(navHostController: NavHostController) {
         isVisible = false
         delay(500)
 
-        navHostController.navigate(Routes.Login.routes) {
+        navHostController.navigate(Routes.Login) {
             popUpTo(navHostController.graph.startDestinationId) { inclusive = true }
             launchSingleTop = true
         }

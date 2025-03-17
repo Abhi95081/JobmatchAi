@@ -1,16 +1,13 @@
 package com.example.jobmatchai.Navigation
 
-
-enum class Routes(val routes: String){
-
-    Home("home"),
-    Add("add"),
-    Profile("profile"),
-    Login("login"),
-    Register("register"),
-    BottomNav("bottom_nav"),
-    Splash("splash"),
-    CoverLetter("cover_letter"),
-    Modification("modify_resume")
-
+object Routes {
+    const val Home = "home"
+    const val Add = "add"
+    const val Profile = "profile"
+    const val Login = "login"
+    const val Register = "register"
+    const val BottomNav = "bottom_nav"
+    const val Splash = "splash"
+    const val CoverLetter = "cover_letter"
+    const val Modification = "modification"
 }

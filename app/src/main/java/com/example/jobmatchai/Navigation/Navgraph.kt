@@ -4,53 +4,19 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.jobmatchai.Screens.Add
-import com.example.jobmatchai.Screens.BottomNav
-import com.example.jobmatchai.Screens.CoverLetter
-import com.example.jobmatchai.Screens.Home
-import com.example.jobmatchai.Screens.Login
-import com.example.jobmatchai.Screens.Modification
-import com.example.jobmatchai.Screens.Profile
-import com.example.jobmatchai.Screens.Register
-import com.example.jobmatchai.Screens.Splash
+import com.example.jobmatchai.Screens.*
 
 @Composable
-fun Navgraph(navController: NavHostController) {
-
-    NavHost(navController = navController,
-        startDestination = Routes.Splash.routes) {
-
-        composable(Routes.Splash.routes) {
-            Splash(navController)
-        }
-        composable(Routes.Home.routes) {
-            Home(navController)
-        }
-        composable(Routes.Profile.routes) {
-            Profile(navController)
-        }
-        composable(Routes.Add.routes) {
-            Add(navController)
-        }
-        composable(Routes.BottomNav.routes) {
-            BottomNav(navController)
-        }
-        composable(Routes.Login.routes) {
-            Login(navController)
-        }
-        composable(Routes.Register.routes) {
-            Register(navController)
-        }
-
-        composable(Routes.CoverLetter.routes) {
-            CoverLetter(navController)
-        }
-
-        composable(Routes.Modification.routes) {
-            Modification(navController)
-        }
-
+fun NavGraph(navController: NavHostController) {
+    NavHost(navController = navController, startDestination = Routes.Splash) {
+        composable(Routes.Splash) { Splash(navController) }
+        composable(Routes.Home) { Home(navController) }
+        composable(Routes.Profile) { Profile(navController) }
+        composable(Routes.Add) { Add(navController) }
+        composable(Routes.BottomNav) { BottomNav(navController) }
+        composable(Routes.Login) { Login(navController) }
+        composable(Routes.Register) { Register(navController) }
+        composable(Routes.CoverLetter) { CoverLetter(navController) }
+        composable(Routes.Modification) { Modification(navController) }
     }
-
 }
-

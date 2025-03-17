@@ -116,8 +116,8 @@ fun Login(navHostController: NavHostController) {
                         Toast.makeText(context, "Please provide all fields", Toast.LENGTH_SHORT).show()
                     } else {
                         buttonPressed = true
-                        navHostController.navigate(Routes.BottomNav.routes) {
-                            popUpTo(Routes.Login.routes) { inclusive = true }
+                        navHostController.navigate(Routes.BottomNav) {
+                            popUpTo(Routes.Login) { inclusive = true }
                             launchSingleTop = true
                         }
                     }
@@ -135,7 +135,7 @@ fun Login(navHostController: NavHostController) {
 
             TextButton(
                 onClick = {
-                    navHostController.navigate(Routes.Register.routes) {
+                    navHostController.navigate(Routes.Register) {
                         popUpTo(navHostController.graph.startDestinationId) {
                             inclusive = true
                         }

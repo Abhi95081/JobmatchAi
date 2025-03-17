@@ -33,8 +33,8 @@ fun Add(navController: NavHostController) {
 
         Button(
             onClick = {
-                navController.navigate(Routes.CoverLetter.routes)
-                Toast.makeText(context, "create cover letter", Toast.LENGTH_SHORT).show()
+                navController.navigate(Routes.CoverLetter)
+                Toast.makeText(context, "Creating Cover Letter...", Toast.LENGTH_SHORT).show()
             },
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -45,8 +45,8 @@ fun Add(navController: NavHostController) {
 
         Button(
             onClick = {
-                navController.navigate(Routes.Modification.routes)
-                Toast.makeText(context, "Check ATS Clicked", Toast.LENGTH_SHORT).show()
+                navController.navigate(Routes.Modification)
+                Toast.makeText(context, "Checking ATS Compatibility...", Toast.LENGTH_SHORT).show()
             },
             modifier = Modifier.fillMaxWidth()
         ) {

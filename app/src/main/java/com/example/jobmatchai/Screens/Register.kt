@@ -139,8 +139,8 @@ fun Register(navHostController: NavHostController) {
                     if (email.isEmpty() || password.isEmpty() || name.isEmpty() || phone.isEmpty()) {
                         Toast.makeText(context, "Please provide all fields", Toast.LENGTH_SHORT).show()
                     } else {
-                        navHostController.navigate(Routes.BottomNav.routes) {
-                            popUpTo(Routes.Login.routes) { inclusive = true }
+                        navHostController.navigate(Routes.BottomNav) {
+                            popUpTo(Routes.Login) { inclusive = true }
                             launchSingleTop = true
                         }
                     }
@@ -153,7 +153,7 @@ fun Register(navHostController: NavHostController) {
 
             TextButton(
                 onClick = {
-                    navHostController.navigate(Routes.Login.routes) {
+                    navHostController.navigate(Routes.Login) {
                         popUpTo(navHostController.graph.startDestinationId) {
                             inclusive = true
                         }
